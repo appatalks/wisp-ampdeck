@@ -1,0 +1,212 @@
+:root {
+  background: transparent;
+}
+
+html,
+body,
+#webamp {
+  width: 100%;
+  height: 100%;
+}
+
+#webamp {
+  position: relative;
+  -webkit-app-region: no-drag;
+}
+
+#webamp * {
+  -webkit-app-region: no-drag;
+}
+
+#main-window #title-bar {
+  -webkit-app-region: drag;
+}
+
+#main-window #option,
+#main-window #option-context,
+#main-window #option-context *,
+#main-window #minimize,
+#main-window #shade,
+#main-window #close {
+  -webkit-app-region: no-drag;
+}
+
+#webamp-context-menu,
+#webamp-context-menu * {
+  -webkit-app-region: no-drag;
+}
+
+#main-window #marquee {
+  cursor: pointer;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+#ampdeck-settings,
+#song-details {
+  position: fixed;
+  top: 8px;
+  left: 286px;
+  z-index: 10;
+  width: min(320px, calc(100vw - 32px));
+  max-height: calc(100vh - 16px);
+  margin: 0;
+  padding: 16px;
+  border: 1px solid #66747f;
+  border-radius: 4px;
+  color: #e8eef1;
+  background: #182128;
+  font-family: "DejaVu Sans", "Helvetica Neue", sans-serif;
+}
+
+#ampdeck-settings,
+#ampdeck-settings *,
+#song-details,
+#song-details * {
+  -webkit-app-region: no-drag;
+}
+
+#ampdeck-settings form {
+  display: grid;
+  gap: 14px;
+}
+
+#ampdeck-settings > div {
+  display: grid;
+  gap: 14px;
+}
+
+#ampdeck-settings header,
+#ampdeck-settings label,
+.settings-command-row,
+#song-details header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+#ampdeck-settings h1,
+#ampdeck-settings h2,
+#song-details h1,
+#song-details h2 {
+  margin: 0;
+  font-size: 14px;
+}
+
+#ampdeck-settings h2 {
+  margin-bottom: 6px;
+  color: #aebfc6;
+  font-weight: 600;
+}
+
+#song-details {
+  width: min(360px, calc(100vw - 32px));
+}
+
+#song-details > div,
+#song-details-content {
+  display: grid;
+  gap: 14px;
+}
+
+#song-details header > div {
+  min-width: 0;
+}
+
+#song-details header p {
+  margin: 0 0 3px;
+  color: #8fb9bc;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#song-details h1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#song-details h2 {
+  margin-bottom: 6px;
+  color: #aebfc6;
+  font-weight: 600;
+}
+
+#song-details-status {
+  margin: 0;
+  color: #c9d5da;
+  font-size: 12px;
+}
+
+#song-details-status:empty {
+  display: none;
+}
+
+#song-details dl {
+  display: grid;
+  grid-template-columns: minmax(78px, auto) minmax(0, 1fr);
+  gap: 5px 12px;
+  margin: 0;
+  font-size: 12px;
+}
+
+#song-details dt {
+  color: #91a3aa;
+}
+
+#song-details dd {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+#ampdeck-settings input[type="range"] {
+  width: 100%;
+  accent-color: #4da3a9;
+}
+
+#ampdeck-settings button {
+  min-height: 28px;
+  border: 1px solid #607680;
+  border-radius: 3px;
+  color: inherit;
+  background: #24343d;
+  cursor: pointer;
+}
+
+#song-details button {
+  min-height: 28px;
+  border: 1px solid #607680;
+  border-radius: 3px;
+  color: inherit;
+  background: #24343d;
+  cursor: pointer;
+}
+
+#close-settings,
+#close-song-details {
+  flex: 0 0 auto;
+  width: 28px;
+  padding: 0;
+}
+
+#reset-scale {
+  padding: 0 10px;
+}
+
+#codec-status {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 12px;
+  margin: 0;
+  padding: 0;
+  color: #c9d5da;
+  font-size: 12px;
+  list-style: none;
+}

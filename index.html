@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111720" />
+    <title>Wisp AmpDeck</title>
+  </head>
+  <body>
+    <div id="webamp" aria-label="Music player"></div>
+    <aside id="ampdeck-settings" aria-labelledby="settings-title" hidden>
+      <div>
+        <header>
+          <h1 id="settings-title">Wisp AmpDeck Settings</h1>
+          <button id="close-settings" type="button" aria-label="Close settings" title="Close settings">x</button>
+        </header>
+        <label for="interface-scale">Interface scale <output id="scale-value" for="interface-scale">100%</output></label>
+        <input id="interface-scale" type="range" min="75" max="250" step="5" value="100" />
+        <div class="settings-command-row">
+          <button id="reset-scale" type="button">Reset scale</button>
+        </div>
+        <section aria-labelledby="codec-title">
+          <h2 id="codec-title">Bundled audio codecs</h2>
+          <ul id="codec-status"></ul>
+        </section>
+      </div>
+    </aside>
+    <aside id="song-details" aria-labelledby="song-details-title" hidden>
+      <div>
+        <header>
+          <div>
+            <p>Now playing</p>
+            <h1 id="song-details-title">Song Information</h1>
+          </div>
+          <button id="close-song-details" type="button" aria-label="Close song information" title="Close song information">x</button>
+        </header>
+        <p id="song-details-status" role="status"></p>
+        <div id="song-details-content"></div>
+      </div>
+    </aside>
+    <script type="module" src="/src/renderer.js"></script>
+  </body>
+</html>

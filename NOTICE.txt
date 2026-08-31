@@ -1,0 +1,8 @@
+Wisp AmpDeck includes bundled code from Webamp.
+
+Webamp
+Copyright (c) Jordan Eldredge and contributors
+https://github.com/captbaritone/webamp
+
+Webamp is distributed under the MIT License. Its license text is included with
+the Webamp package dependency used to build this application.
