@@ -1,5 +1,7 @@
 # Wisp AmpDeck
 
+![Wisp AmpDeck player interface with detachable playlist, equalizer, spectrum, and visualizer windows](assets/wisp-splash.png)
+
 [Wisp AmpDeck](https://github.com/appatalks/wisp-ampdeck) is the **Winamp-Inspired Standalone Player** for Linux and macOS. It supports local music, detachable windows, magnetic snapping, scaling, and Winamp skins.
 
 ## Install
