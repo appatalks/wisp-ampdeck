@@ -8,6 +8,17 @@
   </head>
   <body>
     <div id="webamp" aria-label="Music player"></div>
+    <aside id="wisp-visualizer" aria-label="Wisp audio visualizer">
+      <header class="wisp-visualizer-titlebar draggable">
+        <span class="wisp-visualizer-signal" aria-hidden="true"></span>
+        <button id="previous-visualization" class="wisp-visualizer-mode-button" type="button" aria-label="Previous visualization" title="Previous visualization">&#8249;</button>
+        <strong id="wisp-visualizer-mode">WISP</strong>
+        <button id="next-visualization" class="wisp-visualizer-mode-button" type="button" aria-label="Next visualization" title="Next visualization">&#8250;</button>
+        <button id="fullscreen-wisp-visualizer" type="button" aria-label="Enter fullscreen" title="Enter fullscreen">&#x26F6;</button>
+        <button id="close-wisp-visualizer" type="button" aria-label="Close visualizer" title="Close visualizer">x</button>
+      </header>
+      <canvas id="wisp-visualizer-canvas" aria-label="Audio-reactive Wisp mascot animation"></canvas>
+    </aside>
     <aside id="ampdeck-settings" aria-labelledby="settings-title" hidden>
       <div>
         <header>
@@ -18,6 +29,7 @@
         <input id="interface-scale" type="range" min="75" max="250" step="5" value="100" />
         <div class="settings-command-row">
           <button id="reset-scale" type="button">Reset scale</button>
+          <button id="toggle-wisp-visualizer" type="button">Toggle visualizer</button>
         </div>
         <section aria-labelledby="codec-title">
           <h2 id="codec-title">Bundled audio codecs</h2>

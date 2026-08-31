@@ -235,7 +235,7 @@ async function showOpenDialog(event, options) {
 }
 
 function resizeLinuxWindowToRegions(window, regions) {
-  if (regions.length === 0 || linuxWindowDrags.has(window.id)) {
+  if (regions.length === 0 || linuxWindowDrags.has(window.id) || window.isFullScreen()) {
     return;
   }
 
@@ -282,7 +282,7 @@ async function createWindow() {
     hasShadow: false,
     resizable: false,
     maximizable: false,
-    fullscreenable: false,
+    fullscreenable: true,
     backgroundColor: "#00000000",
     webPreferences: {
       preload: path.join(__dirname, "preload.cjs"),
@@ -377,6 +377,23 @@ ipcMain.handle("app:set-zoom", async (event, requestedZoomFactor) => {
   BrowserWindow.fromWebContents(event.sender)?.webContents.setZoomFactor(zoomFactor);
   await updateSettings({ zoomFactor });
   return zoomFactor;
+});
+
+ipcMain.handle("app:set-fullscreen", (event, requestedFullscreen) => {
+  const window = BrowserWindow.fromWebContents(event.sender);
+  const fullscreen = Boolean(requestedFullscreen);
+  if (!window) {
+    return false;
+  }
+
+  if (fullscreen) {
+    window.setResizable(true);
+    window.setFullScreen(true);
+  } else {
+    window.once("leave-full-screen", () => window.setResizable(false));
+    window.setFullScreen(false);
+  }
+  return fullscreen;
 });
 
 ipcMain.on("app:close", (event) => {

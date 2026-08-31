@@ -47,6 +47,131 @@ body {
   background: transparent;
 }
 
+#wisp-visualizer {
+  position: fixed;
+  top: 0;
+  left: 285px;
+  z-index: 3;
+  box-sizing: border-box;
+  width: 275px;
+  height: 232px;
+  overflow: hidden;
+  border: 1px solid #604187;
+  border-radius: 2px;
+  color: #e7caff;
+  background: #050610;
+  box-shadow: inset 0 0 0 1px #161029, 0 0 12px rgba(137, 78, 199, 0.42);
+  font-family: "DejaVu Sans Mono", monospace;
+  -webkit-app-region: no-drag;
+}
+
+#wisp-visualizer[hidden] {
+  display: none;
+}
+
+.wisp-visualizer-titlebar {
+  display: grid;
+  grid-template-columns: 12px 16px 1fr 16px 17px 17px;
+  align-items: center;
+  box-sizing: border-box;
+  height: 20px;
+  padding: 1px 2px 1px 5px;
+  border-bottom: 1px solid #65448f;
+  background: linear-gradient(180deg, #6d4a91 0, #221733 22%, #0e0b1b 56%, #463060 100%);
+  cursor: move;
+  user-select: none;
+}
+
+.wisp-visualizer-titlebar strong {
+  overflow: hidden;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px #05030a;
+  white-space: nowrap;
+}
+
+.wisp-visualizer-signal {
+  width: 5px;
+  height: 5px;
+  border: 1px solid #dfff9d;
+  background: #89d63f;
+  box-shadow: 0 0 5px #b7ff65;
+}
+
+#close-wisp-visualizer,
+#fullscreen-wisp-visualizer {
+  box-sizing: border-box;
+  width: 15px;
+  height: 14px;
+  padding: 0;
+  border: 1px solid #a87ad0;
+  border-radius: 0;
+  color: #efffc9;
+  background: #1b1027;
+  font: 9px/11px "DejaVu Sans Mono", monospace;
+  cursor: pointer;
+}
+
+#fullscreen-wisp-visualizer {
+  border-right: 0;
+  color: #cda8ed;
+  font-size: 10px;
+}
+
+.wisp-visualizer-mode-button {
+  box-sizing: border-box;
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  border: 0;
+  color: #cda8ed;
+  background: transparent;
+  font: 14px/12px "DejaVu Sans Mono", monospace;
+  cursor: pointer;
+}
+
+.wisp-visualizer-mode-button:hover,
+.wisp-visualizer-mode-button:focus-visible {
+  color: #b7ff65;
+  text-shadow: 0 0 5px rgba(183, 255, 101, 0.8);
+  outline: none;
+}
+
+#close-wisp-visualizer:hover,
+#fullscreen-wisp-visualizer:hover {
+  border-color: #b7ff65;
+  color: #b7ff65;
+}
+
+#wisp-visualizer-canvas {
+  display: block;
+  width: 273px;
+  height: 210px;
+  background: #02030a;
+}
+
+#wisp-visualizer.is-fullscreen {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#wisp-visualizer.is-fullscreen .wisp-visualizer-titlebar {
+  width: 100vw;
+}
+
+#wisp-visualizer.is-fullscreen #wisp-visualizer-canvas {
+  width: 100vw;
+  height: calc(100vh - 20px);
+}
+
 #ampdeck-settings,
 #song-details {
   position: fixed;
@@ -198,6 +323,10 @@ body {
 }
 
 #reset-scale {
+  padding: 0 10px;
+}
+
+#toggle-wisp-visualizer {
   padding: 0 10px;
 }
 

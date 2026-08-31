@@ -10,6 +10,7 @@ contextBridge.exposeInMainWorld("ampdeck", {
   saveSkin: (skin) => ipcRenderer.invoke("skin:save", skin),
   getZoomFactor: () => ipcRenderer.invoke("app:get-zoom"),
   setZoomFactor: (zoomFactor) => ipcRenderer.invoke("app:set-zoom", zoomFactor),
+  setFullscreen: (fullscreen) => ipcRenderer.invoke("app:set-fullscreen", fullscreen),
   setInteractiveRegions: (regions) => ipcRenderer.send("app:set-interactive-regions", regions),
   setMouseInteractivity: (interactive) => ipcRenderer.send("app:set-mouse-interactivity", interactive),
   setWindowDragging: (dragging) => ipcRenderer.send("app:set-window-dragging", dragging),

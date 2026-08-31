@@ -1,5 +1,7 @@
 import Webamp from "webamp";
 import "./styles.css";
+import mascotUrl from "./assets/wisp-mascot.png";
+import { createWispVisualizer } from "./wispVisualizer.js";
 
 const projectRepositoryUrl = "https://github.com/appatalks/wisp-ampdeck";
 const settingsUrl = "wisp-ampdeck:settings";
@@ -15,16 +17,21 @@ const songDetailsTitle = document.querySelector("#song-details-title");
 const songDetailsStatus = document.querySelector("#song-details-status");
 const songDetailsContent = document.querySelector("#song-details-content");
 const closeSongDetailsButton = document.querySelector("#close-song-details");
+const visualizerElement = document.querySelector("#wisp-visualizer");
+const visualizerCanvas = document.querySelector("#wisp-visualizer-canvas");
+const toggleVisualizerButton = document.querySelector("#toggle-wisp-visualizer");
 let interactiveRegionUpdateQueued = false;
 let pointerIsOverInteractiveElement = false;
 let detachableWindowDragActive = false;
 let songDetailsRequestId = 0;
+let wispVisualizer;
 
 const detachableWindowDragSelector = [
   "#equalizer-window .title-bar",
   "#playlist-window .playlist-top",
   "#playlist-window-shade",
-  ".gen-window .gen-top"
+  ".gen-window .gen-top",
+  "#wisp-visualizer .wisp-visualizer-titlebar"
 ].join(",");
 
 function updateInteractiveRegions() {
@@ -35,6 +42,7 @@ function updateInteractiveRegions() {
     "#equalizer-window",
     "#playlist-window",
     "#milkdrop-window",
+    "#wisp-visualizer:not([hidden])",
     ".gen-window",
     ".context-menu",
     ".context-menu ul",
@@ -72,6 +80,7 @@ function updateMouseInteractivity(target) {
     "#equalizer-window",
     "#playlist-window",
     "#milkdrop-window",
+    "#wisp-visualizer",
     ".gen-window",
     ".context-menu",
     "#ampdeck-settings",
@@ -404,6 +413,15 @@ document.addEventListener("click", (event) => {
 async function start() {
   await webamp.renderWhenReady(document.querySelector("#webamp"));
 
+  wispVisualizer = createWispVisualizer({
+    analyser: webamp.media.getAnalyser(),
+    canvas: visualizerCanvas,
+    element: visualizerElement,
+    mascotUrl,
+    onRegionsChange: scheduleInteractiveRegionUpdate,
+    setFullscreen: window.ampdeck.setFullscreen
+  });
+
   await setInterfaceScale((await window.ampdeck.getZoomFactor()) * 100);
 
   webamp.store.dispatch({
@@ -471,7 +489,12 @@ window.addEventListener("keydown", (event) => {
     event.preventDefault();
     void setInterfaceScale(100);
   }
-});
+
+  if (event.altKey && event.key.toLowerCase() === "v") {
+    event.preventDefault();
+    wispVisualizer?.toggle();
+  }
+}, true);
 
 scaleInput.addEventListener("input", () => {
   const percent = Number(scaleInput.value);
@@ -486,6 +509,7 @@ scaleInput.addEventListener("change", () => {
 resetScaleButton.addEventListener("click", () => {
   void setInterfaceScale(100);
 });
+toggleVisualizerButton.addEventListener("click", () => wispVisualizer?.toggle());
 
 closeSettingsButton.addEventListener("click", closeSettings);
 closeSongDetailsButton.addEventListener("click", closeSongDetails);
@@ -495,8 +519,7 @@ document.addEventListener("mousedown", (event) => {
   if (
     event.button === 0 &&
     target instanceof Element &&
-    target.classList.contains("draggable") &&
-    target.closest(detachableWindowDragSelector)
+    target.closest(detachableWindowDragSelector)?.classList.contains("draggable")
   ) {
     detachableWindowDragActive = true;
     window.ampdeck.setWindowDragging(true);

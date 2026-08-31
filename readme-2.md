@@ -39,6 +39,7 @@ Wisp AmpDeck uses:
 - Electron for the native borderless window, dialogs, local file access, and packaging
 - Vite for the renderer build
 - Webamp for the classic player, playlist, equalizer, skins, and audio controls
+- Canvas 2D with Webamp's analyser node for the detachable Wisp mascot visualizer
 - music-metadata for on-demand tags and technical song information
 - electron-builder for Linux and macOS artifacts
 
@@ -47,6 +48,8 @@ The renderer runs with context isolation enabled, Node integration disabled, and
 Local files are registered behind the `ampdeck-audio:` protocol. The protocol supports CORS and byte-range responses so Chromium can seek and decode local tracks. File mappings, the selected skin, and interface scale persist between sessions.
 
 On Linux, the transparent host window contracts around visible Webamp modules. It expands temporarily for detached-window movement, menus, Settings, and Song Information.
+
+The visualizer reads frequency and waveform data from Webamp's existing `AnalyserNode`, so it stays synchronized without opening a second audio stream. Its Wisp, Galaxy, and Orbit scenes are rendered locally with Canvas 2D and can be changed from the title bar. The module can be moved and snapped alongside the classic windows, toggled with `Alt+V`, expanded to fullscreen, and remembers its mode, visibility, and position.
 
 ## Packaging
 
