@@ -1,4 +1,5 @@
-Wisp AmpDeck includes bundled code from Webamp.
+Wisp AmpDeck includes bundled code from Webamp. The Wisp AmpDeck skin is a
+palette and configuration derivative of Webamp's classic base skin.
 
 Webamp
 Copyright (c) Jordan Eldredge and contributors

@@ -23,6 +23,7 @@ const audioMimeTypes = new Map([
 ]);
 const minimumZoomFactor = 0.75;
 const maximumZoomFactor = 2.5;
+const defaultZoomFactor = 1.5;
 const supportsWindowShape = process.platform === "win32";
 const localAudioFiles = new Map();
 const linuxWindowDrags = new Set();
@@ -269,7 +270,7 @@ async function createWindow() {
   }
 
   const initialZoomFactor = useBoundedLinuxWindow
-    ? normalizeZoomFactor(savedSettings.zoomFactor ?? 1)
+    ? normalizeZoomFactor(savedSettings.zoomFactor ?? defaultZoomFactor)
     : 1;
   const window = new BrowserWindow({
     x: workArea.x,
@@ -369,7 +370,7 @@ ipcMain.handle("skin:save", async (_event, skin) => {
   await updateSettings({ skin });
 });
 
-ipcMain.handle("app:get-zoom", async () => (await readSettings()).zoomFactor ?? 1);
+ipcMain.handle("app:get-zoom", async () => (await readSettings()).zoomFactor ?? defaultZoomFactor);
 
 ipcMain.handle("app:set-zoom", async (event, requestedZoomFactor) => {
   const zoomFactor = normalizeZoomFactor(Number(requestedZoomFactor) || 1);

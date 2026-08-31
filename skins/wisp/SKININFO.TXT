@@ -1,0 +1,5 @@
+[Skin]
+Name=Wisp AmpDeck
+Author=Wisp AmpDeck contributors
+Version=1.0
+Comment=Deep violet chrome with neon lime and cyan accents.

@@ -3,6 +3,7 @@ import "./styles.css";
 
 const projectRepositoryUrl = "https://github.com/appatalks/wisp-ampdeck";
 const settingsUrl = "wisp-ampdeck:settings";
+const defaultSkinUrl = new URL("./skins/Wisp-AmpDeck.wsz", window.location.href).href;
 const settingsDialog = document.querySelector("#ampdeck-settings");
 const scaleInput = document.querySelector("#interface-scale");
 const scaleValue = document.querySelector("#scale-value");
@@ -326,6 +327,8 @@ async function chooseSkin() {
 const webamp = new Webamp({
   zIndex: 1,
   enableHotkeys: true,
+  initialSkin: { url: defaultSkinUrl },
+  availableSkins: [{ url: defaultSkinUrl, name: "Wisp AmpDeck" }],
   windowLayout: {
     main: { position: { top: 0, left: 0 } },
     equalizer: { position: { top: 116, left: 0 } },

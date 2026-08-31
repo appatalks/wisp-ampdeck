@@ -24,6 +24,14 @@ npm run build
 npm start
 ```
 
+Rebuild the bundled Wisp AmpDeck skin:
+
+```bash
+npm run skin:build
+```
+
+The skin builder requires `curl`, `unzip`, `zip`, FFmpeg, and ImageMagick. It uses a pinned copy of Webamp's classic base skin, preserves the original sprite geometry, applies the Wisp palette, and writes `public/skins/Wisp-AmpDeck.wsz`.
+
 ## Architecture
 
 Wisp AmpDeck uses:
@@ -83,6 +91,8 @@ The public installer command works after `install.sh` is present on `main` and a
 - `electron/`: main process and preload bridge
 - `src/`: renderer behavior and styles
 - `scripts/`: installer, uninstaller, and release helpers
+- `skins/`: authored Wisp skin palettes and metadata
+- `public/skins/`: bundled generated Wisp skin
 - `build/`: application icon sources
 - `.github/workflows/`: release automation
 - `dist/`: generated application builds

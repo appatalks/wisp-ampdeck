@@ -12,6 +12,7 @@ body,
 #webamp {
   position: relative;
   -webkit-app-region: no-drag;
+  image-rendering: pixelated;
 }
 
 #webamp * {
