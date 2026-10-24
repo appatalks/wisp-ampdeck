@@ -45,7 +45,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "latest",
     "concurrently": "latest",
-    "electron": "^44.0.0",
+    "electron": "^44.9.1",
     "electron-builder": "^26.15.3",
     "vite": "latest",
     "wait-on": "latest"
